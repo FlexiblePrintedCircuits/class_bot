@@ -26,7 +26,9 @@ def get_jeson():
     #print(request.data)
     print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     slice1 = mail_body.find("Ｉ２")
+    print(slice1)
     slice2 = mail_body.find("----")
+    print(slice2)
     print(mail_body[slice1:slice2])
 
     #messages = TextSendMessage(text=mail_body)
