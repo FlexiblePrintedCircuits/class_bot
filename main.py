@@ -22,17 +22,13 @@ handler = WebhookHandler("d03905b4dadc5f6292597c595f3df85e")
 def get_jeson():
     group_id = "C84a3f6c8f5e45507cdc2b6759bf558ac"
     mail_body = request.data.decode('utf-8')
-    #print("aaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-    #print(request.data)
-    print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-    slice1 = mail_body.find("Ｉ２")
-    print(slice1)
-    slice2 = mail_body.find("----")
-    print(slice2)
-    print(mail_body[slice1:slice2])
 
-    #messages = TextSendMessage(text=mail_body)
-    #line_bot_api.push_message(group_id, messages=messages)
+    slice1 = mail_body.find("Ｉ２")
+    slice2 = mail_body.find("----")
+    mail_body = mail_body[slice1:slice2])
+
+    messages = TextSendMessage(text=mail_body)
+    line_bot_api.push_message(group_id, messages=messages)
 
 @app.route("/test", methods=['GET'])
 def test():
