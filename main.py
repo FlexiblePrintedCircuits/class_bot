@@ -25,7 +25,9 @@ def get_jeson():
     #print("aaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     #print(request.data)
     print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-    print(mail_body)
+    slice1 = mail_body.find("Ｉ２")
+    slice2 = mail_body.find("----")
+    print(mail_body[slice1:slice2])
 
     #messages = TextSendMessage(text=mail_body)
     #line_bot_api.push_message(group_id, messages=messages)
