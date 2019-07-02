@@ -26,9 +26,12 @@ def get_jeson():
     slice1 = mail_body.find("Ｉ２")
     slice2 = mail_body.find("----")
     mail_body = mail_body[slice1:slice2]
+    print(mail_body)
 
     messages = TextSendMessage(text=mail_body)
     line_bot_api.push_message(group_id, messages=messages)
+
+    return 1
 
 @app.route("/test", methods=['GET'])
 def test():
