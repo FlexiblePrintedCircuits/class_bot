@@ -24,9 +24,11 @@ def get_jeson():
     mail_body = request.data.decode('utf-8')
     #print("aaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     #print(request.data)
+    print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    print(mail_body)
 
-    messages = TextSendMessage(text=mail_body)
-    line_bot_api.push_message(group_id, messages=messages)
+    #messages = TextSendMessage(text=mail_body)
+    #line_bot_api.push_message(group_id, messages=messages)
 
 @app.route("/test", methods=['GET'])
 def test():
