@@ -33,6 +33,11 @@ def webhook():
         )
         line_bot_api.push_message(user_id, messages=messagesImage)'''
 
+@app.route("/get_mail", methods=['POST'])
+def get_jeson():
+    mail_body = request.form['body']
+
+
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
@@ -53,11 +58,11 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     if event.type == "message":
-        if (event.message.text == "a"):
+        if (event.message.text == "Check: GroupID"):
             line_bot_api.reply_message(
                 event.reply_token,
                 [
-                    TextSendMessage(text=event.source.user_id)
+                    TextSendMessage(text=event.source.group_id)
                 ]
             )
 
