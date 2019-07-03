@@ -15,12 +15,12 @@ import json
 app = Flask(__name__)
 app.debug = False
 
-line_bot_api = LineBotApi("rSGR6J4mVY3fQ8SqrCZyjtAxqT9dynuIGC87wtEGcbwLzxSGDMY2/l8YRD3cqxOcYY9JReg5uvD2kfyGGUdYp9yTWuoxgzFtyI5avM71zqwdCf4HuskTzn31LKFdAGnOsgLIt4fItpr1wOmQj5HN7wdB04t89/1O/w1cDnyilFU=")
-handler = WebhookHandler("d03905b4dadc5f6292597c595f3df85e")
+line_bot_api = LineBotApi(LINE_CHANNEL_TOKEN)
+handler = WebhookHandler(LINE_CHANNEL_SERIAL)
 
 @app.route("/get_mail", methods=['POST'])
 def get_jeson():
-    group_id = "C84a3f6c8f5e45507cdc2b6759bf558ac"
+    group_id = "ひみつ♡"
     mail_body = request.data.decode('utf-8')
 
     slice1 = mail_body.find("Ｉ２")
@@ -31,25 +31,20 @@ def get_jeson():
     messages = TextSendMessage(text=mail_body)
     line_bot_api.push_message(group_id, messages=messages)
 
-    return 1
-
 @app.route("/test", methods=['GET'])
 def test():
-    group_id = "C84a3f6c8f5e45507cdc2b6759bf558ac"
+    group_id = "ひみつ♡"
 
     messages = TextSendMessage(text="テスト：GET通信：テスト成功")
     line_bot_api.push_message(group_id, messages=messages)
 
 @app.route("/callback", methods=['POST'])
 def callback():
-    # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
 
-    # get request body as text
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
 
-    # handle webhook body
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
